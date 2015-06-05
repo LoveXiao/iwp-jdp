@@ -43,30 +43,29 @@
 	<form:form modelAttribute="role" action="${ctx}/sys/role/save" method="post"class="form-horizontal" id="inputForm">
 		<form:hidden path="recid"/>
 		<tags:message content="${message}"/>
-		<!-- Text input-->
-		<div class="control-group">
-		  <label class="control-label" for="name">名称：</label>
-		  <div class="controls">
-		  	<form:input path="name" htmlEscape="false" class="input-large required" maxlength="50" placeholder="角色名称"/>
-		  </div>
-		</div>
-		<!-- Text input-->
-		<div class="control-group">
-		  <label class="control-label" for="nameMng">别名：</label>
-		  <div class="controls">
-		  <form:input path="nameMng" htmlEscape="false" class="input-large required" maxlength="50" placeholder="别名"/>
-		  </div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="menuIds">权限：</label>
-               <tags:treeselect id="menuIds" name="menuIds" value="${role.menuIds}" labelName="${role.menuNames}" labelValue="${role.menuNames}"
-				title="菜单" url="/sys/menu/treeData" cssClass="required" checked="true"/>
-		</div>
-		
-		<div class="form-actions" style="margin-top:8px;">
+	    <div class="form-group">
+          <label class="col-sm-2 control-label" for=menuIds>权限：</label >
+           <tags:treeselect id="menuIds" name="menuIds" value="${role.menuIds}" labelName="${role.menuNames}" labelValue="${role.menuNames}"
+			title="菜单" url="/sys/menu/treeData" cssClass="form-control required" checked="true" divClass="col-sm-6"/>
+        </div>
+		<div class="form-group">
+          <label class="col-sm-2 control-label" for="name">角色名称：</label >
+          <div class="col-sm-6">
+            <form:input path="name" htmlEscape="false" class="form-control required" maxlength="50" placeholder="角色名称" />
+          </div>
+        </div>
+		<div class="form-group">
+          <label class="col-sm-2 control-label" for="nameMng">角色别名：</label >
+          <div class="col-sm-6">
+            <form:input path="nameMng" htmlEscape="false" class="form-control required" maxlength="50" placeholder="角色别名" />
+          </div>
+        </div>
+		<div class="form-group" style="margin-top:8px;">
+			<div class="col-sm-offset-2 col-sm-6">
 			<!-- <shiro:hasPermission name="sys:role:edit">  </shiro:hasPermission> -->
-			<form:button id="btnSubmit" class="btn btn-primary" type="submit" >保存</form:button>&nbsp;
-			<form:button id="btnCancel" class="btn" type="button" onclick="history.go(-1)">返 回</form:button>
+				<form:button id="btnSubmit" class="btn btn-primary " type="submit" >保存</form:button>&nbsp;
+				<form:button id="btnCancel" class="btn" type="button" onclick="history.go(-1)">返 回</form:button>
+			</div>
 		</div>
 	</form:form>
 </body>

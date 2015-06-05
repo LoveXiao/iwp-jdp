@@ -16,7 +16,8 @@
 	<slf4j.version>1.7.6</slf4j.version>	
 	<logback.version>1.1.2</logback.version>	
 	<junit.version>4.11</junit.version>
-	<h2.version>1.3.176</h2.version>
+	<!-- 1.3.176 -->
+	<h2.version>1.4.187</h2.version>
 	<!-- others setting -->
   	<commons-lang3.version>3.1</commons-lang3.version>
 	<commons-io.version>2.4</commons-io.version>
@@ -83,6 +84,11 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
 		</dependency>
 	<!-- PERSISTENCE end -->
 	<!-- WEB begin -->
@@ -271,12 +277,12 @@
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-context-support</artifactId>
 	</dependency>
-	<!-- 
+	<!-- Validator 定义使用见spring-config.xml-->
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-validator</artifactId>
 		<version>5.0.3.Final</version>
-	</dependency> -->
+	</dependency> 
 	<!-- sitemesh -->
 	<dependency>
 		<groupId>opensymphony</groupId>

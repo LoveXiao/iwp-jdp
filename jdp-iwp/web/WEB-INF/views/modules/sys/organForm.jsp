@@ -14,7 +14,7 @@
 			$("#name").focus();
 			$("#inputForm").validate({
 				rules: {
-					name: {remote: "${ctx}/sys/organ/checkorganname?oldrolename=" + encodeURIComponent('${organ.name}')},
+					name: {remote: "${ctx}/sys/organ/checkorganname?oldorganname=" + encodeURIComponent('${organ.name}')},
 				},
 				messages: {
 					name: {remote: "单位名称已存在"},
@@ -43,7 +43,7 @@
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/sys/organ/">单位列表</a></li>
 		<li class="active">
-			<a href="${ctx}/sys/organ/form">单位 <shiro:hasPermission name="sys:organ:edit">添加</shiro:hasPermission>
+			<a href="${ctx}/sys/organ/form">单位<shiro:hasPermission name="sys:organ:edit">添加</shiro:hasPermission>
 			<shiro:lacksPermission name="sys:organ:view">查看</shiro:lacksPermission></a>
 		</li>
 	</ul><br/>
@@ -51,39 +51,33 @@
 		<form:hidden path="recid"/>
 		<tags:message content="${message}"/>
 		<!-- Text input-->
-		<div class="control-group">
-		  <label class="control-label" for="name">单位名称：</label>
-		  <div class="controls">
-		    <input id="oldorganname" name="oldorganname" type="hidden" value="${organ.name}"/>
-		  	<form:input path="name" htmlEscape="false" class="input-large required" maxlength="255" placeholder="单位名称"/>
-		  </div>
-		</div>
+		<div class="form-group">
+          <label class="col-sm-2 control-label" for="name">单位名称：</label >
+          <div class="col-sm-6">
+          	<input id="oldorganname" name="oldorganname" type="hidden" value="${organ.name}"/>
+            <form:input path="name" htmlEscape="false" class="form-control required" maxlength="255" placeholder="单位名称" />
+          </div>
+        </div>
 		<!-- Text input-->
-		<div class="control-group">
-		  <label class="control-label" for="code">单位代码：</label>
-		  <div class="controls">
-		  <form:input path="code" htmlEscape="false" class="input-large required" maxlength="255" placeholder="单位代码"/>
-		  </div>
-		</div>
-		<div class="control-group">
-		  <label class="control-label" for="sort">单位排序：</label>
-		  <div class="controls">
-		  <form:input path="sort" htmlEscape="false" class="input-large required" maxlength="100" placeholder="排序"/>
-		  </div>
-		</div>
-		<!-- 
-		<div class="control-group">
-			<label class="control-label" for="sort">排序：</label>
-               <tags:treeselect id="menuIds" name="menuIds" value="${role.menuIds}" labelName="${role.menuNames}" labelValue="${role.menuNames}"
-				title="菜单" url="/sys/menu/treeData" cssClass="required" checked="true"/>
-		</div>
-		 -->
-		<div class="form-actions" style="margin-top:8px;">
-			<!-- -->
-			<shiro:hasPermission name="sys:organ:edit">   
-			<form:button id="btnSubmit" class="btn btn-primary" type="submit" >保存</form:button>&nbsp;
-			</shiro:hasPermission>
-			<form:button id="btnCancel" class="btn" type="button" onclick="history.go(-1)">返 回</form:button>
+		<div class="form-group">
+          <label class="col-sm-2 control-label" for="code">单位代码：</label >
+          <div class="col-sm-6">
+            <form:input path="code" htmlEscape="false" class="form-control required" maxlength="255" placeholder="单位代码" />
+          </div>
+        </div>
+       	<div class="form-group">
+          <label class="col-sm-2 control-label" for="code">单位排序：</label >
+          <div class="col-sm-6">
+            <form:input path="sort" htmlEscape="false" class="form-control required" maxlength="100" placeholder="排序" />
+          </div>
+        </div>
+		<div class="form-group" style="margin-top:8px;">
+			<div class="col-sm-offset-2 col-sm-6">
+				<shiro:hasPermission name="sys:organ:edit">   
+				<form:button id="btnSubmit" class="btn btn-primary" type="submit" >保存</form:button>&nbsp;
+				</shiro:hasPermission>
+				<form:button id="btnCancel" class="btn" type="button" onclick="history.go(-1)">返 回</form:button>
+			</div>
 		</div>
 	</form:form>
 	

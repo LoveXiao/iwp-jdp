@@ -78,7 +78,7 @@ public class RoleService  extends BaseService {
 			roleDao.delete(recid);
 		} catch (Exception e) {
 			logger.error("根据角色ID '"+recid+"' 删除角色，失败。\n"+e.getMessage());
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException("根据角色ID '"+recid+"' 删除角色，失败。");
 		}
 		return true;
 	}

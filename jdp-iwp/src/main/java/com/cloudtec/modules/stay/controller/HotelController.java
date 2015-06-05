@@ -17,7 +17,7 @@ import com.cloudtec.common.controller.BaseController;
 import com.cloudtec.common.utils.StringUtils;
 import com.cloudtec.modules.stay.entity.Hotel;
 import com.cloudtec.modules.stay.service.HotelService;
-import com.sun.xml.internal.ws.resources.SenderMessages;
+
 @Controller
 @RequestMapping("${adminPath}/stay/hotel")
 public class HotelController extends BaseController {

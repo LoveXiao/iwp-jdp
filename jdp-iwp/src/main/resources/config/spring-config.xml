@@ -112,9 +112,9 @@
 		</tx:attributes>
 	</tx:advice>
 	
-	<!-- 配置 JSR303 Bean Validator 定义,需要添加 实现包hibernate-validator-xxxx.jar
+	<!-- 配置 JSR303 Bean Validator 定义,需要添加 实现包hibernate-validator-xxxx.jar-->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-     -->
+     
     <!-- 数据缓存 ehcache -->
    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:cache/ehcache-local.xml" />

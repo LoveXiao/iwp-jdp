@@ -33,7 +33,7 @@ public class WarnController extends BaseController {
 		Page<Warn> warnPage = warnService.findWarns(warn,warn.getPageNo(),warn.getPageSize(),null);
 		model.addAttribute("warns", warnPage);
 		model.addAttribute("warn", warn);
-		return "modules/warn/warnList";
+		return "modules/warninfo/warnList";
 	}
 	@RequiresPermissions("warninfo:warn:view")
 	@RequestMapping(value="/form")
@@ -43,7 +43,7 @@ public class WarnController extends BaseController {
 		}
 		model.addAttribute("allIssueClient", DictUtils.getDictList(Warn.ISSUEDICTTYPE));
 		model.addAttribute("warn",warn);
-		return "modules/warn/warnForm";
+		return "modules/warninfo/warnForm";
 	}
 	
 	@RequiresPermissions("warninfo:warn:edit")

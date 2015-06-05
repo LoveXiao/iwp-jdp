@@ -34,18 +34,25 @@
 		<li class="active"><a href="${ctx}/sys/organ/">单位列表</a></li>
 		<li><a href="${ctx}/sys/organ/form">单位添加</a></li>
 	</ul>
-	<form:form id="searchForm" modelAttribute="organ" action="${ctx}/sys/organ/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="organ" action="${ctx}/sys/organ/" method="post" class="breadcrumb form-search  form-horizontal">
 		<input id="pageNo" name="pageNo" type="hidden" value="${organ.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${organ.pageSize}"/>
-		<div>
-			<label>单位代码：</label><form:input path="code" htmlEscape="false" maxlength="50" class="input-small"/>
+	   <div class="form-group">
+			<label class="col-sm-1 control-label" for="code" >单位代码：</label>
+       		<div class="col-sm-4">
+				<form:input path="code" htmlEscape="false" maxlength="50" class="form-control" placeholder="输入单位代码"/>
+			</div>
 		</div>
-		<div style="margin-top:8px;">
-			<label>单位名称：</label>
-			<form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>
-			&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" />
-			&nbsp;<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
-			&nbsp;<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
+	  	<div class="form-group">
+       		<label class="col-sm-1 control-label" for="username">单位名称：</label>
+       		<div class="col-sm-4">
+					<form:input path="name" htmlEscape="false" maxlength="50" class="form-control" placeholder="输入单位名称"/>
+			</div>
+			<div class="col-sm-3">
+		 			&nbsp;<button id="btnSubmit" class="btn btn-primary " type="submit" value="查询">查询</button>
+	       			 &nbsp;<button id="btnExport" class="btn btn-primary " type="button" value="导出">导出</button>
+	       			 &nbsp;<button id="btnImport" class="btn btn-primary " type="button" value="导入">导入</button>
+			</div>
 		</div>
 	</form:form>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
@@ -58,7 +65,9 @@
 				<td>${organ.sort}</td>
 				<td>${organ.grade}</td>
 				<td>
-				<a href="${ctx}/sys/organ/delete?recid=${organ.recid}">删除</a>  
+				<shiro:hasPermission name="sys:organ:edit">
+					<a href="${ctx}/sys/organ/delete?recid=${organ.recid}">删除</a>  
+				</shiro:hasPermission>
 				<a href="${ctx}/sys/organ/form?recid=${organ.recid}">修改</a>
 				</td>
 			</tr>

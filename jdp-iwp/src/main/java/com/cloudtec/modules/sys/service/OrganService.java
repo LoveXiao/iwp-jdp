@@ -23,6 +23,8 @@ import org.springframework.stereotype.Service;
 import com.cloudtec.common.service.BaseService;
 import com.cloudtec.modules.sys.dao.OrganDao;
 import com.cloudtec.modules.sys.entity.Organ;
+import com.cloudtec.modules.sys.entity.User;
+import com.cloudtec.modules.sys.result.ServiceResult;
 import com.cloudtec.modules.sys.utils.PageBuildUtils;
 
 
@@ -43,6 +45,10 @@ public class OrganService extends BaseService {
 	@Autowired
 	@Qualifier(value="organDao")
 	private OrganDao organDao;
+	
+	@Autowired
+	@Qualifier(value="userService")
+	private UserService userService;
 
 	/**
 	 * @Title: OrganService.findAll
@@ -108,9 +114,34 @@ public class OrganService extends BaseService {
 		try{
 			organDao.saveAndFlush(organ);
 		}catch(Exception e){
-			logger.error("保存单位信息失败。");
-			throw new ServiceException(e.getMessage());
+			logger.error("保存单位信息失败。"+e.getMessage());
+			throw new ServiceException("保存单位信息失败。");
 		}
 		return true;
+	}
+
+	public ServiceResult delete(String recid) {
+		ServiceResult result = new ServiceResult();
+		try{
+				Organ organ = organDao.findByRecid(recid);
+				if(organ !=null){
+					for(Organ organchild :  organ.getChildList()){
+						organchild.setParent(organ.getParent());
+					}
+					for(User user :  organ.getUserList()){
+						userService.delete(user.getRecid());
+					}
+					organDao.delete(recid);
+					result.setSuccess(true);
+					result.setMessage("单位【"+organ.getName()+"】删除成功!");
+					return result;
+				}
+				result.setMessage("要删除的单位不存在!");
+			}catch(Exception e){
+				logger.error("删除单位信息失败。"+e.getMessage());
+				result.setMessage("删除单位异常。");
+			}
+			return result;
+		
 	}
 }

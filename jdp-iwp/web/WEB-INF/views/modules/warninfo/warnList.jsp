@@ -58,7 +58,7 @@
 			<tbody>
 			<c:forEach items="${warns.content}" var="warn">
 				<tr>
-					<td><a href="${ctx}/warnInfo/user/form?recid=${warn.recid}">${warn.title}</a></td>
+					<td><a href="${ctx}/warnInfo/warn/form?recid=${warn.recid}">${warn.title}</a></td>
 					<td>${warn.author}</td>
 					<td>
 						<c:forEach items="${warn.issueClientDicts}" var ="dict">

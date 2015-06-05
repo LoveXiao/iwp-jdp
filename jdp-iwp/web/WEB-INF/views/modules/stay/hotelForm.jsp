@@ -36,7 +36,7 @@
           <!-- Text input-->
           <label class="col-sm-2 control-label" for="name">酒店名称：</label >
           <div class="col-sm-6">
-            <form:input path="name" htmlEscape="true" class="form-controlrequired" maxlength="50" placeholder="酒店名称" />
+            <form:input path="name" htmlEscape="true" class="form-control required" maxlength="50" placeholder="酒店名称" />
           </div>
         </div>
     <div class="form-group">

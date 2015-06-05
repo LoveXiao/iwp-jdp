@@ -59,21 +59,30 @@
 		<!-- onclick='jump("mainFrame","${ctx}/sys/user/form")' -->
 		<a href="${ctx}/sys/user/form" >用户添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/user/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/user/" method="post" class="breadcrumb form-search form-horizontal">
 		<input id="pageNo" name="pageNo" type="hidden" value="${user.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${user.pageSize}"/>
-		<div>
-			<label>归属部门：</label>
+	   <div class="form-group">
+			<label class="col-sm-1 control-label" for="organ.recid" >归属部门：</label>
 			<tags:treeselect id="organ" name="organ.recid" value="${user.organ.recid}" labelName="organ.name" labelValue="${user.organ.name}" 
-				title="部门" url="/sys/organ/treeData" cssClass="input-small" allowClear="true" checked="true"/>
-			<label>登录名：</label><form:input path="username" htmlEscape="false" maxlength="50" class="input-small"/>
+				title="部门" url="/sys/organ/treeData" cssClass="form-control" allowClear="true" checked="true" divClass="col-sm-3"/>
+			<label class="col-sm-1 control-label" for="username">登录名：</label>
+       		<div class="col-sm-3">
+				<form:input path="username" htmlEscape="false" maxlength="50" class="form-control" placeholder="输入用户登陆名"/>
+			</div>
 		</div>
-		<div style="margin-top:8px;">
-			<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
-			<form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>
-			&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" />
-			&nbsp;<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
-			&nbsp;<input id="btnImport" class="btn btn-primary" type="button" value="导入"/>
+	  	<div class="form-group">
+       		<label class="col-sm-1 control-label" for="username">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+       		<div class="col-sm-7">
+       			<div class="input-group">
+					<form:input path="name" htmlEscape="false" maxlength="50" class="form-control" placeholder="输入用户姓名"/>
+					<span class="input-group-btn">
+		       			 &nbsp;<button id="btnSubmit" class="btn btn-primary " type="submit" value="查询">查询</button>
+		       			 &nbsp;<button id="btnExport" class="btn btn-primary " type="button" value="导出">导出</button>
+		       			 &nbsp;<button id="btnImport" class="btn btn-primary " type="button" value="导入">导入</button>
+		       		 </span>
+				</div>
+			</div>
 		</div>
 	</form:form>
 	<div>

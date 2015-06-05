@@ -7,6 +7,9 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 	       var ue = UE.getEditor('editor');
+	       ue.ready(function(){
+		    	UE.getEditor('editor').setContent('${warn.content}');    
+			});
 			$("#name").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
@@ -24,6 +27,7 @@
 				}
 			}); 
 		});
+		
 	</script>
 </head>
 <body>
@@ -38,28 +42,29 @@
 		<tags:message content="${message}"/>
 		<div class="form-group">
           <!-- Text input-->
-          <label class="col-sm-1 control-label" for="title">预警标题：</label >
-          <div class="col-sm-10">
-            <form:input path="title" htmlEscape="true" class="form-control  required" maxlength="50" placeholder="预警标题" />
+          <label class="col-sm-2 control-label" for="title">预警标题：</label >
+          <div class="col-sm-6">
+            <form:input path="title" htmlEscape="false" class="form-control  required" maxlength="50" placeholder="预警标题" />
           </div>
         </div>
     <div class="form-group">
           <!-- Text input-->
-          <label class="col-sm-1 control-label" for="author">创建人：</label>
-          <div class="col-sm-10">
+          <label class="col-sm-2 control-label" for="author">创建人：</label>
+          <div class="col-sm-6">
              <form:input path="author" htmlEscape="false" class="form-control  required"  maxlength="50" placeholder="创建人" />
           </div>
     </div>
   	<div class="form-group">
-		<label class="col-sm-1 control-label" for="issueClient">发布平台:</label>
-		<div class="col-sm-10">
+		<label class="col-sm-2 control-label" for="issueClient">发布平台:</label>
+		<div class="col-sm-6">
 			<form:checkboxes path="issueClient" items="${allIssueClient}" itemLabel="label" itemValue="recid" htmlEscape="false" class="required"/>
 		</div>
 	</div>
     <div class="form-group">
-    	<label class="col-sm-1 control-label" for="content">发布内容:</label>
-    	<div class ="col-sm-10 edui-default" id="editor"  style="width:880px; height:350px" name="content">
-    	</div>
+    	<label class="col-sm-2 control-label" for="content">发布内容:</label>
+    	
+    	 <script id="editor" type="text/plain" class ="col-sm-10 edui-default" style="width:880px;height:350px;" name="content"></script>
+
      </div>
 	<div class="form-group">
 		<!-- <shiro:hasPermission name="sys:warn:edit">  </shiro:hasPermission> -->

@@ -33,6 +33,7 @@ import com.cloudtec.common.config.Global;
 import com.cloudtec.common.controller.BaseController;
 import com.cloudtec.common.utils.StringUtils;
 import com.cloudtec.modules.sys.entity.Organ;
+import com.cloudtec.modules.sys.result.ServiceResult;
 import com.cloudtec.modules.sys.service.OrganService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -111,6 +112,17 @@ public class OrganController extends BaseController {
 			return form(organ, model);
 		}
 		 return "redirect:"+Global.getAdminPath()+"/sys/organ?repage";
+	}
+	@RequiresPermissions("sys:organ:edit")
+	@RequestMapping(value="delete")
+	public String deleteOrgan(String recid, RedirectAttributes redirectAttributes){
+		if(StringUtils.isEmpty(recid)){
+				addMessage(redirectAttributes, "单位标识不能为空!");
+		}else {
+				ServiceResult result= organService.delete(recid);
+				addMessage(redirectAttributes, result.getMessage());
+		}
+		return "redirect:"+Global.getAdminPath()+"/sys/organ/?repage";
 	}
 	/**
 	 * @Title: OrganController.imprtOrgans
